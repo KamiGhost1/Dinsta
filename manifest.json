@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Download Insta",
+  "version": "0.1.0",
+  "permissions": [
+    "contextMenus",
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.instagram.com/p/*"],
+      "js": ["js/jquery-3.5.1.js"]
+    }
+  ]
+}
