@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         for(var i =0;i<localStorage.length;i++){
             await chrome.downloads.download({
                 url:localStorage.getItem(`${i}`),
-                filename:sub.getTime(),
+                filename:sub.getTime()
              })
         }
     }
