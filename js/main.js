@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // html+=`<li><a href="${list[i]}">Image ${i+1}</a></li>`
             html+=`<div class="d-flex justify-content-around align-items-center">
             <img src="${list[i]}" alt="" style="width: 100px;height: 100px; margin-top: 10px; margin-right: 10%" id="di${i}">
-            <h1>X</h1>
+            <h1 id="X${i}">X</h1>
         </div>`
         }
         li.innerHTML = html;
