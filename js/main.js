@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
     var listSRCS =[];
-
     let saveList= function(list){
         var ar = [];
         if(localStorage.length >0){
@@ -65,6 +64,20 @@ document.addEventListener('DOMContentLoaded', function () {
         chrome.tabs.create({url:src});
     }
 
+    let addAttr = function(){
+        for(let i =0; i<localStorage.length;i++){
+            // document.getElementById('di'+i).setAttribute('onclick', openSrc(localStorage.getItem(`${i}`)))
+            document.getElementById('di'+i).addEventListener('click',()=>{
+                openSrc(localStorage.getItem(`${i}`))
+            })
+            document.getElementById('di'+i).addEventListener('contextmenu',()=>{
+                localStorage.removeItem(`${i}`)
+                renderLi()
+                }
+            )
+        }
+    };
+
     let renderLi = function(){
         var li = document.getElementById('li');
         var html = '';
@@ -74,9 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         for(let i = 0;i<list.length;i++){
             // html+=`<li><a href="${list[i]}">Image ${i+1}</a></li>`
-            html+=`<img src="${list[i]}" alt="" style="width: 100px;height: 100px; margin-top: 10px">`
+            html+=`<img src="${list[i]}" alt="" style="width: 100px;height: 100px; margin-top: 10px; margin-right: 10%" id="di${i}">`
         }
         li.innerHTML = html;
+        addAttr()
     }
 
     chrome.runtime.onMessage.addListener(async (msg,sender, sendResponse)=>{
