@@ -73,7 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
             list.push(localStorage.getItem(`${i}`))
         }
         for(let i = 0;i<list.length;i++){
-            html+=`<li><a href="${list[i]}">Image ${i+1}</a></li>`
+            // html+=`<li><a href="${list[i]}">Image ${i+1}</a></li>`
+            html+=`<img src="${list[i]}" alt="" style="width: 100px;height: 100px; margin-top: 10px">`
         }
         li.innerHTML = html;
     }
