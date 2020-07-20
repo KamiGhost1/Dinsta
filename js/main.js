@@ -169,5 +169,10 @@ document.addEventListener('DOMContentLoaded', function () {
         window.close()
     })
 
+    let btnDonate = document.getElementById('donate')
+    btnDonate.addEventListener('click', ()=>{
+        window.open('donate.html')
+    })
+
     renderLi()
 },false)
