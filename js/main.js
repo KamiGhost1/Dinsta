@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 ar.push(list[i])
             }
         }
-
         localStorage.clear()
         for(let i=0;i<ar.length;i++){
             localStorage.setItem(`${i}`,ar[i])
