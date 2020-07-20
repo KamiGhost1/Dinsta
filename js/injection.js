@@ -27,6 +27,9 @@ if(url[2]!="www.instagram.com"){
                 console.log(el);
             })
             console.groupEnd()
+            chrome.runtime.sendMessage({data:srcs, srcs:true},(res)=>{
+                console.log(res);
+            })
         }else{
             if(i===4){
                 elem = document.querySelector('._97aPb ').children[0].children[0].children[0].children[0]
@@ -34,6 +37,9 @@ if(url[2]!="www.instagram.com"){
                 console.group('DINSTA')
                 console.log(src)
                 console.groupEnd()
+                chrome.runtime.sendMessage({data:src},(res)=>{
+                    console.log(res);
+                })
             }
             if(i===5){
                 elem = document.querySelector('._97aPb ').children[0].children[0].children[0].children[0].children[0]
@@ -41,6 +47,9 @@ if(url[2]!="www.instagram.com"){
                 console.group('DINSTA')
                 console.log(src)
                 console.groupEnd()
+                chrome.runtime.sendMessage({data:src},(res)=>{
+                    console.log(res);
+                })
             }
         }
     }else{
