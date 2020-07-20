@@ -87,7 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         for(let i = 0;i<list.length;i++){
             // html+=`<li><a href="${list[i]}">Image ${i+1}</a></li>`
-            html+=`<img src="${list[i]}" alt="" style="width: 100px;height: 100px; margin-top: 10px; margin-right: 10%" id="di${i}">`
+            html+=`<div class="d-flex justify-content-around align-items-center">
+            <img src="${list[i]}" alt="" style="width: 100px;height: 100px; margin-top: 10px; margin-right: 10%" id="di${i}">
+            <h1>X</h1>
+        </div>`
         }
         li.innerHTML = html;
         addAttr()
