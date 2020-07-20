@@ -1,5 +1,45 @@
+
+
 document.addEventListener('DOMContentLoaded', function () {
     var listSRCS =[];
+
+    sub = {
+        clocks(time){
+            if (time < 10){
+                return '0'+time
+            }else{
+                return time
+            }
+        },
+        getTime() {
+            let now = new Date()
+            let time = `${this.clocks(now.getHours())}-${this.clocks(now.getMinutes())}-${this.clocks(now.getSeconds())}.jpg`
+            return time
+        },
+    }
+
+
+    let downloadImages = async function(){
+        for(var i =0;i<localStorage.length;i++){
+            await chrome.downloads.download({
+                url:localStorage.getItem(`${i}`),
+                filename:sub.getTime(),
+             })
+        }
+    }
+
+    let deleteItem = function(listId){
+        var items =[]
+        for(let i=0;i<localStorage.length;i++){
+            items.push(localStorage.getItem(`${i}`))
+        }
+        items.splice(listId,1);
+        localStorage.clear()
+        for(let i =0;i<items.length;i++){
+            localStorage.setItem(`${i}`, items[i])
+        }
+    }
+
     let saveList= function(list){
         var ar = [];
         if(localStorage.length >0){
@@ -70,11 +110,10 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('di'+i).addEventListener('click',()=>{
                 openSrc(localStorage.getItem(`${i}`))
             })
-            document.getElementById('di'+i).addEventListener('contextmenu',()=>{
-                localStorage.removeItem(`${i}`)
+            document.getElementById('Xi'+ i).addEventListener('click',async ()=>{
+                await deleteItem(i)
                 renderLi()
-                }
-            )
+            })
         }
     };
 
@@ -87,9 +126,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         for(let i = 0;i<list.length;i++){
             // html+=`<li><a href="${list[i]}">Image ${i+1}</a></li>`
-            html+=`<div class="d-flex justify-content-around align-items-center">
-            <img src="${list[i]}" alt="" style="width: 100px;height: 100px; margin-top: 10px; margin-right: 10%" id="di${i}">
-            <h1 id="X${i}">X</h1>
+            html+=`<div class="d-flex justify-content-around align-items-center" style=" margin-top: 10px;">
+            <img src="${list[i]}" alt="" style="width: 100px;height: 100px;" id="di${i}">
+            <h1 id="Xi${i}">X</h1>
         </div>`
         }
         li.innerHTML = html;
@@ -120,6 +159,13 @@ document.addEventListener('DOMContentLoaded', function () {
     btnDel.addEventListener('click', ()=>{
         localStorage.clear();
         renderLi()
+        window.close()
+    })
+
+    let btnDL = document.getElementById('download')
+    btnDL.addEventListener('click', async ()=>{
+        await downloadImages()
+        localStorage.clear()
         window.close()
     })
 

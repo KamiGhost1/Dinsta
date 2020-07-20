@@ -5,8 +5,10 @@
   "permissions": [
     "contextMenus",
     "activeTab",
-    "tabs"
+    "tabs",
+    "downloads"
   ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval';script-src-elem 'self' 'unsafe-eval'; object-src 'self'",
   "browser_action": {
     "default_popup": "index.html",
     "default_icon":"icon.png"
